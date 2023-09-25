@@ -5,9 +5,9 @@ all:
       hosts:
         cvp:
           # Ansible variables used by the ansible_avd and ansible_cvp roles to push configuration to devices via CVP
-          ansible_host: 192.168.1.12
-          ansible_user: ansible
-          ansible_password: ansible
+          ansible_host: 10.255.111.33
+          ansible_user: cvpadmin
+          ansible_password: cvp123!
           ansible_connection: httpapi
           ansible_httpapi_use_ssl: true
           ansible_httpapi_validate_certs: false
@@ -19,26 +19,26 @@ all:
           children:
             DC1_SPINES:
               hosts:
-                dc1-spine1:
-                  ansible_host: 172.16.1.11
-                dc1-spine2:
-                  ansible_host: 172.16.1.12
+                DC1-SPINE1:
+                  ansible_host: 192.168.0.11
+                DC1-SPINE2:
+                  ansible_host: 192.168.0.12
             DC1_L3_LEAVES:
               hosts:
-                dc1-leaf1a:
-                  ansible_host: 172.16.1.101
-                dc1-leaf1b:
-                  ansible_host: 172.16.1.102
-                dc1-leaf2a:
-                  ansible_host: 172.16.1.103
-                dc1-leaf2b:
-                  ansible_host: 172.16.1.104
+                DC1-LEAF1A:
+                  ansible_host: 192.168.0.13
+                DC1-LEAF1B:
+                  ansible_host: 192.168.0.14
+                DC1-LEAF2A:
+                  ansible_host: 192.168.0.15
+                DC1-LEAF2B:
+                  ansible_host: 192.168.0.16
             DC1_L2_LEAVES:
               hosts:
-                dc1-leaf1c:
-                  ansible_host: 172.16.1.151
-                dc1-leaf2c:
-                  ansible_host: 172.16.1.152
+                DC1-L2LEAF1A:
+                  ansible_host: 192.168.0.17
+                DC1-L2LEAF2A:
+                  ansible_host: 192.168.0.18
 
     NETWORK_SERVICES:
       children:

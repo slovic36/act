@@ -17,14 +17,14 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
-| FABRIC | l3leaf | dc1-leaf1a | 172.16.1.101/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf1b | 172.16.1.102/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l2leaf | dc1-leaf1c | 172.16.1.151/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf2a | 172.16.1.103/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l3leaf | dc1-leaf2b | 172.16.1.104/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l2leaf | dc1-leaf2c | 172.16.1.152/24 | vEOS-lab | Provisioned | - |
-| FABRIC | spine | dc1-spine1 | 172.16.1.11/24 | vEOS-lab | Provisioned | - |
-| FABRIC | spine | dc1-spine2 | 172.16.1.12/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l2leaf | DC1-L2LEAF1A | 192.168.0.17/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l2leaf | DC1-L2LEAF2A | 192.168.0.18/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | DC1-LEAF1A | 192.168.0.13/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | DC1-LEAF1B | 192.168.0.14/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | DC1-LEAF2A | 192.168.0.15/24 | vEOS-lab | Provisioned | - |
+| FABRIC | l3leaf | DC1-LEAF2B | 192.168.0.16/24 | vEOS-lab | Provisioned | - |
+| FABRIC | spine | DC1-SPINE1 | 192.168.0.11/24 | vEOS-lab | Provisioned | - |
+| FABRIC | spine | DC1-SPINE2 | 192.168.0.12/24 | vEOS-lab | Provisioned | - |
 
 > Provision status is based on Ansible inventory declaration and do not represent real status from CloudVision.
 
@@ -37,22 +37,22 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
-| l3leaf | dc1-leaf1a | Ethernet1 | spine | dc1-spine1 | Ethernet1 |
-| l3leaf | dc1-leaf1a | Ethernet2 | spine | dc1-spine2 | Ethernet1 |
-| l3leaf | dc1-leaf1a | Ethernet3 | mlag_peer | dc1-leaf1b | Ethernet3 |
-| l3leaf | dc1-leaf1a | Ethernet4 | mlag_peer | dc1-leaf1b | Ethernet4 |
-| l3leaf | dc1-leaf1a | Ethernet8 | l2leaf | dc1-leaf1c | Ethernet1 |
-| l3leaf | dc1-leaf1b | Ethernet1 | spine | dc1-spine1 | Ethernet2 |
-| l3leaf | dc1-leaf1b | Ethernet2 | spine | dc1-spine2 | Ethernet2 |
-| l3leaf | dc1-leaf1b | Ethernet8 | l2leaf | dc1-leaf1c | Ethernet2 |
-| l3leaf | dc1-leaf2a | Ethernet1 | spine | dc1-spine1 | Ethernet3 |
-| l3leaf | dc1-leaf2a | Ethernet2 | spine | dc1-spine2 | Ethernet3 |
-| l3leaf | dc1-leaf2a | Ethernet3 | mlag_peer | dc1-leaf2b | Ethernet3 |
-| l3leaf | dc1-leaf2a | Ethernet4 | mlag_peer | dc1-leaf2b | Ethernet4 |
-| l3leaf | dc1-leaf2a | Ethernet8 | l2leaf | dc1-leaf2c | Ethernet1 |
-| l3leaf | dc1-leaf2b | Ethernet1 | spine | dc1-spine1 | Ethernet4 |
-| l3leaf | dc1-leaf2b | Ethernet2 | spine | dc1-spine2 | Ethernet4 |
-| l3leaf | dc1-leaf2b | Ethernet8 | l2leaf | dc1-leaf2c | Ethernet2 |
+| l2leaf | DC1-L2LEAF1A | Ethernet1 | l3leaf | DC1-LEAF1A | Ethernet8 |
+| l2leaf | DC1-L2LEAF1A | Ethernet2 | l3leaf | DC1-LEAF1B | Ethernet8 |
+| l2leaf | DC1-L2LEAF2A | Ethernet1 | l3leaf | DC1-LEAF2A | Ethernet8 |
+| l2leaf | DC1-L2LEAF2A | Ethernet2 | l3leaf | DC1-LEAF2B | Ethernet8 |
+| l3leaf | DC1-LEAF1A | Ethernet1 | spine | DC1-SPINE1 | Ethernet1 |
+| l3leaf | DC1-LEAF1A | Ethernet2 | spine | DC1-SPINE2 | Ethernet1 |
+| l3leaf | DC1-LEAF1A | Ethernet3 | mlag_peer | DC1-LEAF1B | Ethernet3 |
+| l3leaf | DC1-LEAF1A | Ethernet4 | mlag_peer | DC1-LEAF1B | Ethernet4 |
+| l3leaf | DC1-LEAF1B | Ethernet1 | spine | DC1-SPINE1 | Ethernet2 |
+| l3leaf | DC1-LEAF1B | Ethernet2 | spine | DC1-SPINE2 | Ethernet2 |
+| l3leaf | DC1-LEAF2A | Ethernet1 | spine | DC1-SPINE1 | Ethernet3 |
+| l3leaf | DC1-LEAF2A | Ethernet2 | spine | DC1-SPINE2 | Ethernet3 |
+| l3leaf | DC1-LEAF2A | Ethernet3 | mlag_peer | DC1-LEAF2B | Ethernet3 |
+| l3leaf | DC1-LEAF2A | Ethernet4 | mlag_peer | DC1-LEAF2B | Ethernet4 |
+| l3leaf | DC1-LEAF2B | Ethernet1 | spine | DC1-SPINE1 | Ethernet4 |
+| l3leaf | DC1-LEAF2B | Ethernet2 | spine | DC1-SPINE2 | Ethernet4 |
 
 ## Fabric IP Allocation
 
@@ -66,14 +66,14 @@
 
 | Node | Node Interface | Node IP Address | Peer Node | Peer Interface | Peer IP Address |
 | ---- | -------------- | --------------- | --------- | -------------- | --------------- |
-| dc1-leaf1a | Ethernet1 | 10.255.255.1/31 | dc1-spine1 | Ethernet1 | 10.255.255.0/31 |
-| dc1-leaf1a | Ethernet2 | 10.255.255.3/31 | dc1-spine2 | Ethernet1 | 10.255.255.2/31 |
-| dc1-leaf1b | Ethernet1 | 10.255.255.5/31 | dc1-spine1 | Ethernet2 | 10.255.255.4/31 |
-| dc1-leaf1b | Ethernet2 | 10.255.255.7/31 | dc1-spine2 | Ethernet2 | 10.255.255.6/31 |
-| dc1-leaf2a | Ethernet1 | 10.255.255.9/31 | dc1-spine1 | Ethernet3 | 10.255.255.8/31 |
-| dc1-leaf2a | Ethernet2 | 10.255.255.11/31 | dc1-spine2 | Ethernet3 | 10.255.255.10/31 |
-| dc1-leaf2b | Ethernet1 | 10.255.255.13/31 | dc1-spine1 | Ethernet4 | 10.255.255.12/31 |
-| dc1-leaf2b | Ethernet2 | 10.255.255.15/31 | dc1-spine2 | Ethernet4 | 10.255.255.14/31 |
+| DC1-LEAF1A | Ethernet1 | 10.255.255.1/31 | DC1-SPINE1 | Ethernet1 | 10.255.255.0/31 |
+| DC1-LEAF1A | Ethernet2 | 10.255.255.3/31 | DC1-SPINE2 | Ethernet1 | 10.255.255.2/31 |
+| DC1-LEAF1B | Ethernet1 | 10.255.255.5/31 | DC1-SPINE1 | Ethernet2 | 10.255.255.4/31 |
+| DC1-LEAF1B | Ethernet2 | 10.255.255.7/31 | DC1-SPINE2 | Ethernet2 | 10.255.255.6/31 |
+| DC1-LEAF2A | Ethernet1 | 10.255.255.9/31 | DC1-SPINE1 | Ethernet3 | 10.255.255.8/31 |
+| DC1-LEAF2A | Ethernet2 | 10.255.255.11/31 | DC1-SPINE2 | Ethernet3 | 10.255.255.10/31 |
+| DC1-LEAF2B | Ethernet1 | 10.255.255.13/31 | DC1-SPINE1 | Ethernet4 | 10.255.255.12/31 |
+| DC1-LEAF2B | Ethernet2 | 10.255.255.15/31 | DC1-SPINE2 | Ethernet4 | 10.255.255.14/31 |
 
 ### Loopback Interfaces (BGP EVPN Peering)
 
@@ -85,12 +85,12 @@
 
 | POD | Node | Loopback0 |
 | --- | ---- | --------- |
-| FABRIC | dc1-leaf1a | 10.255.0.3/32 |
-| FABRIC | dc1-leaf1b | 10.255.0.4/32 |
-| FABRIC | dc1-leaf2a | 10.255.0.5/32 |
-| FABRIC | dc1-leaf2b | 10.255.0.6/32 |
-| FABRIC | dc1-spine1 | 10.255.0.1/32 |
-| FABRIC | dc1-spine2 | 10.255.0.2/32 |
+| FABRIC | DC1-LEAF1A | 10.255.0.3/32 |
+| FABRIC | DC1-LEAF1B | 10.255.0.4/32 |
+| FABRIC | DC1-LEAF2A | 10.255.0.5/32 |
+| FABRIC | DC1-LEAF2B | 10.255.0.6/32 |
+| FABRIC | DC1-SPINE1 | 10.255.0.1/32 |
+| FABRIC | DC1-SPINE2 | 10.255.0.2/32 |
 
 ### VTEP Loopback VXLAN Tunnel Source Interfaces (VTEPs Only)
 
@@ -102,7 +102,7 @@
 
 | POD | Node | Loopback1 |
 | --- | ---- | --------- |
-| FABRIC | dc1-leaf1a | 10.255.1.3/32 |
-| FABRIC | dc1-leaf1b | 10.255.1.3/32 |
-| FABRIC | dc1-leaf2a | 10.255.1.5/32 |
-| FABRIC | dc1-leaf2b | 10.255.1.5/32 |
+| FABRIC | DC1-LEAF1A | 10.255.1.3/32 |
+| FABRIC | DC1-LEAF1B | 10.255.1.3/32 |
+| FABRIC | DC1-LEAF2A | 10.255.1.5/32 |
+| FABRIC | DC1-LEAF2B | 10.255.1.5/32 |

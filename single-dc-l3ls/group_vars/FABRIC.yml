@@ -19,8 +19,8 @@ ansible_httpapi_validate_certs: false
 fabric_name: FABRIC
 
 # Define underlay and overlay routing protocol to be used
-underlay_routing_protocol: ebgp
-overlay_routing_protocol: ebgp
+underlay_routing_protocol: ospf
+overlay_routing_protocol: ibgp
 
 # Local users
 local_users:
@@ -34,7 +34,11 @@ local_users:
     privilege: 15
     role: network-admin
     no_password: true
-
+  - name: cvpadmin
+    privilege: 15
+    role: network-admin
+    # Password set to "ansible". Same string as the device generates when configuring a username.
+    sha512_password: $6$/dSL2Oy4PWk9IsWz$c4PPQ2BW72M./PnfOYJ5vzh7F9XcZVLgUPtfR4EqUzCekuKH86hrBrTLMrHkGUjK4i.hjiFBXODZ.KIWa4FJf1
 # BGP peer groups passwords
 bgp_peer_groups:
   # all passwords set to "arista"
@@ -67,20 +71,26 @@ default_interfaces:
 
 # CloudVision Portal definitions
 cvp_instance_ips:
-  - 192.168.1.12
-terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
-terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
-terminattr_disable_aaa: true
+  - 192.168.0.5
+# terminattr_smashexcludes: "ale,flexCounter,hardware,kni,pulse,strata"
+# terminattr_ingestexclude: "/Sysdb/cell/1/agent,/Sysdb/cell/2/agent"
+# terminattr_disable_aaa: true
 
 # DNS Server
 name_servers:
-  - 192.168.1.1
+  - 10.255.0.2
 
 # NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Management VRF
-custom_structured_configuration_ntp:
-  local_interface:
-    name: Management1
-    vrf: MGMT
+# custom_structured_configuration_ntp:
+#   local_interface:
+#     name: Management1
+#     vrf: MGMT
+#   servers:
+#     - name: 0.pool.ntp.org
+#       vrf: MGMT
+ntp:
   servers:
     - name: 0.pool.ntp.org
-      vrf: MGMT
+      preferred: true
+    - name: 1.pool.ntp.org
+  authenticate: false
