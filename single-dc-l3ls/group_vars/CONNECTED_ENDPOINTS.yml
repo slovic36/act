@@ -28,7 +28,7 @@ servers:
 
       - endpoint_ports: [ iLO ]
         switch_ports: [ Ethernet5 ]
-        switches: [ DC1-LEAF1C ]
+        switches: [ DC1-L2LEAF1A ]
         vlans: 11
         mode: access
         spanning_tree_portfast: edge
@@ -48,7 +48,7 @@ servers:
 
       - endpoint_ports: [ iLO ]
         switch_ports: [ Ethernet5 ]
-        switches: [ DC1-LEAF2C ]
+        switches: [ DC1-L2LEAF2A ]
         vlans: 11
         mode: access
         spanning_tree_portfast: edge
