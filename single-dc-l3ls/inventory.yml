@@ -33,18 +33,18 @@ all:
                   ansible_host: 192.168.0.15
                 DC1-LEAF2B:
                   ansible_host: 192.168.0.16
-            DC1_L2_LEAVES:
-              hosts:
-                DC1-L2LEAF1A:
-                  ansible_host: 192.168.0.17
-                DC1-L2LEAF2A:
-                  ansible_host: 192.168.0.18
+            # DC1_L2_LEAVES:
+            #   hosts:
+            #     DC1-L2LEAF1A:
+            #       ansible_host: 192.168.0.17
+            #     DC1-L2LEAF2A:
+            #       ansible_host: 192.168.0.18
 
     NETWORK_SERVICES:
       children:
         DC1_L3_LEAVES:
-        DC1_L2_LEAVES:
+        # DC1_L2_LEAVES:
     CONNECTED_ENDPOINTS:
       children:
         DC1_L3_LEAVES:
-        DC1_L2_LEAVES:
+        # DC1_L2_LEAVES:

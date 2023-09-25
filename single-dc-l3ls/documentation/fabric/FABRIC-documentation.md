@@ -17,8 +17,6 @@
 
 | POD | Type | Node | Management IP | Platform | Provisioned in CloudVision | Serial Number |
 | --- | ---- | ---- | ------------- | -------- | -------------------------- | ------------- |
-| FABRIC | l2leaf | DC1-L2LEAF1A | 192.168.0.17/24 | vEOS-lab | Provisioned | - |
-| FABRIC | l2leaf | DC1-L2LEAF2A | 192.168.0.18/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | DC1-LEAF1A | 192.168.0.13/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | DC1-LEAF1B | 192.168.0.14/24 | vEOS-lab | Provisioned | - |
 | FABRIC | l3leaf | DC1-LEAF2A | 192.168.0.15/24 | vEOS-lab | Provisioned | - |
@@ -37,10 +35,6 @@
 
 | Type | Node | Node Interface | Peer Type | Peer Node | Peer Interface |
 | ---- | ---- | -------------- | --------- | ----------| -------------- |
-| l2leaf | DC1-L2LEAF1A | Ethernet1 | l3leaf | DC1-LEAF1A | Ethernet8 |
-| l2leaf | DC1-L2LEAF1A | Ethernet2 | l3leaf | DC1-LEAF1B | Ethernet8 |
-| l2leaf | DC1-L2LEAF2A | Ethernet1 | l3leaf | DC1-LEAF2A | Ethernet8 |
-| l2leaf | DC1-L2LEAF2A | Ethernet2 | l3leaf | DC1-LEAF2B | Ethernet8 |
 | l3leaf | DC1-LEAF1A | Ethernet1 | spine | DC1-SPINE1 | Ethernet1 |
 | l3leaf | DC1-LEAF1A | Ethernet2 | spine | DC1-SPINE2 | Ethernet1 |
 | l3leaf | DC1-LEAF1A | Ethernet3 | mlag_peer | DC1-LEAF1B | Ethernet3 |
