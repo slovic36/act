@@ -8,12 +8,8 @@ router_bgp:
   maximum_paths:
     paths: 4
     ecmp: 4
+  bgp_cluster_id: 10.255.0.2
   peer_groups:
-  - name: IPv4-UNDERLAY-PEERS
-    type: ipv4
-    password: 7x4B4rnJhZB438m9+BrBfQ==
-    maximum_routes: 12000
-    send_community: all
   - name: EVPN-OVERLAY-PEERS
     type: evpn
     update_source: Loopback0
@@ -21,54 +17,29 @@ router_bgp:
     password: Q4fqtbqcZ7oQuKfuWtNGRQ==
     send_community: all
     maximum_routes: 0
-    ebgp_multihop: 3
-    next_hop_unchanged: true
+    remote_as: '65100'
+    route_reflector_client: true
   address_family_ipv4:
     peer_groups:
-    - name: IPv4-UNDERLAY-PEERS
-      activate: true
     - name: EVPN-OVERLAY-PEERS
       activate: false
-  redistribute_routes:
-  - source_protocol: connected
-    route_map: RM-CONN-2-BGP
-  neighbors:
-  - ip_address: 10.255.255.3
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65101'
-    description: DC1-LEAF1A_Ethernet2
-  - ip_address: 10.255.255.7
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65101'
-    description: DC1-LEAF1B_Ethernet2
-  - ip_address: 10.255.255.11
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65102'
-    description: DC1-LEAF2A_Ethernet2
-  - ip_address: 10.255.255.15
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65102'
-    description: DC1-LEAF2B_Ethernet2
-  - ip_address: 10.255.0.3
-    peer_group: EVPN-OVERLAY-PEERS
-    description: DC1-LEAF1A
-    remote_as: '65101'
-  - ip_address: 10.255.0.4
-    peer_group: EVPN-OVERLAY-PEERS
-    description: DC1-LEAF1B
-    remote_as: '65101'
-  - ip_address: 10.255.0.5
-    peer_group: EVPN-OVERLAY-PEERS
-    description: DC1-LEAF2A
-    remote_as: '65102'
-  - ip_address: 10.255.0.6
-    peer_group: EVPN-OVERLAY-PEERS
-    description: DC1-LEAF2B
-    remote_as: '65102'
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
       activate: true
+  neighbors:
+  - ip_address: 10.255.0.3
+    peer_group: EVPN-OVERLAY-PEERS
+    description: DC1-LEAF1A
+  - ip_address: 10.255.0.4
+    peer_group: EVPN-OVERLAY-PEERS
+    description: DC1-LEAF1B
+  - ip_address: 10.255.0.5
+    peer_group: EVPN-OVERLAY-PEERS
+    description: DC1-LEAF2A
+  - ip_address: 10.255.0.6
+    peer_group: EVPN-OVERLAY-PEERS
+    description: DC1-LEAF2B
 service_routing_protocols_model: multi-agent
 ip_routing: true
 daemon_terminattr:
@@ -129,6 +100,8 @@ ethernet_interfaces:
   mtu: 1500
   type: routed
   ip_address: 10.255.255.2/31
+  ospf_network_point_to_point: true
+  ospf_area: 0.0.0.0
 - name: Ethernet2
   peer: DC1-LEAF1B
   peer_interface: Ethernet2
@@ -138,6 +111,8 @@ ethernet_interfaces:
   mtu: 1500
   type: routed
   ip_address: 10.255.255.6/31
+  ospf_network_point_to_point: true
+  ospf_area: 0.0.0.0
 - name: Ethernet3
   peer: DC1-LEAF2A
   peer_interface: Ethernet2
@@ -147,6 +122,8 @@ ethernet_interfaces:
   mtu: 1500
   type: routed
   ip_address: 10.255.255.10/31
+  ospf_network_point_to_point: true
+  ospf_area: 0.0.0.0
 - name: Ethernet4
   peer: DC1-LEAF2B
   peer_interface: Ethernet2
@@ -156,23 +133,26 @@ ethernet_interfaces:
   mtu: 1500
   type: routed
   ip_address: 10.255.255.14/31
+  ospf_network_point_to_point: true
+  ospf_area: 0.0.0.0
 loopback_interfaces:
 - name: Loopback0
   description: EVPN_Overlay_Peering
   shutdown: false
   ip_address: 10.255.0.2/32
-prefix_lists:
-- name: PL-LOOPBACKS-EVPN-OVERLAY
-  sequence_numbers:
-  - sequence: 10
-    action: permit 10.255.0.0/27 eq 32
-route_maps:
-- name: RM-CONN-2-BGP
-  sequence_numbers:
-  - sequence: 10
-    type: permit
-    match:
-    - ip address prefix-list PL-LOOPBACKS-EVPN-OVERLAY
+  ospf_area: 0.0.0.0
+router_ospf:
+  process_ids:
+  - id: 100
+    passive_interface_default: true
+    router_id: 10.255.0.2
+    max_lsa: 12000
+    no_passive_interfaces:
+    - Ethernet1
+    - Ethernet2
+    - Ethernet3
+    - Ethernet4
+    bfd_enable: false
 router_bfd:
   multihop:
     interval: 300
