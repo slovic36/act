@@ -1,0 +1,32 @@
+name: 'Dev Runner'
+
+on:
+  push:
+#    branches-ignore:
+#      - main
+
+# on:
+#   push:
+
+jobs:
+  avd-dev-deployment:
+    runs-on: [self-hosted, dev]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Deploy Configurations to ACT
+        run: ansible-playbook -i inventory/inventory.yml playbooks/dev-fabric-deploy.yml
+
+      - run: sleep 10
+      
+      - name: Run AVD EOS Validate State Playbook against ACT
+        run: ansible-playbook -i inventory/inventory.yml playbooks/fabric-validation.yml --skip-tags "ntp,reload_cause,mlag,optional"
+        #run: foo.py 
+
+      - name: Upload verification reports to github
+        uses: actions/upload-artifact@master
+        with:
+          name: ValidationReport
+          path: DC-information/reports/
+
