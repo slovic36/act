@@ -59,7 +59,7 @@ l3leaf:
     # Definitions under the group will be inherited by both nodes in the group
     - group: DC1_L3_LEAF1
       # ASN to be used by BGP for the group. Both devices in the MLAG pair will use the same BGP ASN
-      bgp_as: 65101
+      bgp_as: 65100
       nodes:
         # Definition of hostnames under the node_group
         - name: DC1-LEAF1A
