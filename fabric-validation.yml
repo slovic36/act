@@ -15,8 +15,8 @@
         root_dir: 'FABRIC-Information'
         structured_dir: 'intended/structured_configs' 
 
-    - name: Upload verification reports to github
-      uses: actions/upload-artifact@master
-      with:
-        name: ValidationReport
-        path: FABRIC-information/reports/
+#    - name: Upload verification reports to github
+#      uses: actions/upload-artifact@master
+#      with:
+#        name: ValidationReport
+#        path: FABRIC-information/reports/
