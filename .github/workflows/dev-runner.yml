@@ -16,15 +16,15 @@ jobs:
         uses: actions/checkout@master
 
       - name: Build Configurations
-        run: ansible-playbook -i inventory.yml build.yml
+        run: ansible-playbook -i inventory.yml build.yml -vvvv
 
       - name: Deploy Configuration to CVP
-        run: ansible-playbook -i inventory.yml deploy-cvp.yml
+        run: ansible-playbook -i inventory.yml deploy-cvp.yml -vvvv
 
       - run: sleep 10
 
       - name: Validate connectivity
-        run: ansible-playbook -i inventory.yml fabric-validation.yml
+        run: ansible-playbook -i inventory.yml fabric-validation.yml -vvvv
 #
 #      
 #      
