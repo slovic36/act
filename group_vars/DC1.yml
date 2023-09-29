@@ -11,7 +11,7 @@ spine:
     # Pool of IPv4 addresses to configure interface Loopback0 used for BGP EVPN sessions
     loopback_ipv4_pool: 10.255.0.0/27
     # ASN to be used by BGP
-    bgp_as: 65101
+    bgp_as: 65100
 
   # Definition of nodes contained in this group.
   # Specific configuration of device must take place under the node definition. Each node inherits all values defined under 'defaults'
