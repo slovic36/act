@@ -10,7 +10,7 @@ servers:
         # Device ports where the server ports are connected.
         switch_ports: [Ethernet5, Ethernet5]
         # Device names where the server ports are connected.
-        switches: [DC1-LEAF1A, DC1-LEAF1B]
+        switches: [dc1-leaf1a, dc1-leaf1b]
         # VLANs that will be configured on these ports.
         vlans: 11-12,21-22
         # Native VLAN to be used on these ports.
@@ -28,7 +28,7 @@ servers:
 
       # - endpoint_ports: [ iLO ]
       #   switch_ports: [ Ethernet3 ]
-      #   switches: [ DC1-L2LEAF1A ]
+      #   switches: [ dc1-l2leaf1a ]
       #   vlans: 11
       #   mode: access
       #   spanning_tree_portfast: edge
@@ -37,7 +37,7 @@ servers:
     adapters:
       - endpoint_ports: [ PCI1, PCI2 ]
         switch_ports: [ Ethernet5, Ethernet5 ]
-        switches: [ DC1-LEAF2A, DC1-LEAF2B ]
+        switches: [ dc1-leaf2a, dc1-leaf2b ]
         vlans: 11-12,21-22
         native_vlan: 4092
         mode: trunk
@@ -48,7 +48,7 @@ servers:
 
       # - endpoint_ports: [ iLO ]
       #   switch_ports: [ Ethernet3 ]
-      #   switches: [ DC1-L2LEAF2A ]
+      #   switches: [ dc1-l2leaf2A ]
       #   vlans: 11
       #   mode: access
       #   spanning_tree_portfast: edge

@@ -19,25 +19,25 @@ all:
           children:
             DC1_SPINES:
               hosts:
-                DC1-SPINE1:
+                dc1-spine1:
                   ansible_host: 192.168.0.11
-                DC1-SPINE2:
+                dc1-spine2:
                   ansible_host: 192.168.0.12
             DC1_L3_LEAVES:
               hosts:
-                DC1-LEAF1A:
+                dc1-leaf1a:
                   ansible_host: 192.168.0.13
-                DC1-LEAF1B:
+                dc1-leaf1b:
                   ansible_host: 192.168.0.14
-                DC1-LEAF2A:
+                dc1-leaf2a:
                   ansible_host: 192.168.0.15
-                DC1-LEAF2B:
+                dc1-leaf2b:
                   ansible_host: 192.168.0.16
             DC1_L2_LEAVES:
               hosts:
-                DC1-L2LEAF1A:
+                dc1-l2leaf1a:
                   ansible_host: 192.168.0.17
-                DC1-L2LEAF2A:
+                dc1-l2leaf2a:
                   ansible_host: 192.168.0.18
 
     NETWORK_SERVICES:

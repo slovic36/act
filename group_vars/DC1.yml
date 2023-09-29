@@ -17,13 +17,13 @@ spine:
   # Specific configuration of device must take place under the node definition. Each node inherits all values defined under 'defaults'
   nodes:
     # Name of the node to be defined (must be consistent with definition in inventory)
-    - name: DC1-SPINE1
+    - name: dc1-spine1
       # Device ID definition. An integer number used for internal calculations (ie. IPv4 address of the loopback_ipv4_pool among others)
       id: 1
       # Management IP to be assigned to the management interface
       mgmt_ip: 192.168.0.11/24
 
-    - name: DC1-SPINE2
+    - name: dc1-spine2
       id: 2
       mgmt_ip: 192.168.0.12/24
 
@@ -41,7 +41,7 @@ l3leaf:
     # Definition of pool of IPs to be used as Virtual Tunnel EndPoint (VXLAN origin and destination IPs)
     vtep_loopback_ipv4_pool: 10.255.1.0/27
     # Ansible hostname of the devices used to establish neighborship (IP assignments and BGP peering)
-    uplink_switches: ['DC1-SPINE1', 'DC1-SPINE2']
+    uplink_switches: ['dc1-spine1', 'dc1-spine2']
     # Definition of pool of IPs to be used in P2P links
     uplink_ipv4_pool: 10.255.255.0/26
     # Definition of pool of IPs to be used for MLAG peer-link connectivity
@@ -62,7 +62,7 @@ l3leaf:
       bgp_as: 65100
       nodes:
         # Definition of hostnames under the node_group
-        - name: DC1-LEAF1A
+        - name: dc1-leaf1a
           id: 1
           mgmt_ip: 192.168.0.13/24
           # Definition of the port to be used in the uplink device facing this device.
@@ -70,7 +70,7 @@ l3leaf:
           uplink_switch_interfaces:
             - Ethernet1
             - Ethernet1
-        - name: DC1-LEAF1B
+        - name: dc1-leaf1b
           id: 2
           mgmt_ip: 192.168.0.14/24
           uplink_switch_interfaces:
@@ -80,13 +80,13 @@ l3leaf:
     - group: DC1_L3_LEAF2
       bgp_as: 65102
       nodes:
-        - name: DC1-LEAF2A
+        - name: dc1-leaf2a
           id: 3
           mgmt_ip: 192.168.0.15/24
           uplink_switch_interfaces:
             - Ethernet3
             - Ethernet3
-        - name: DC1-LEAF2B
+        - name: dc1-leaf2B
           id: 4
           mgmt_ip: 192.168.0.16/24
           uplink_switch_interfaces:
@@ -101,18 +101,18 @@ l2leaf:
     spanning_tree_mode: mstp
   node_groups:
     - group: DC1_L2_LEAF1
-      uplink_switches: ['DC1-LEAF1A', 'DC1-LEAF1B']
+      uplink_switches: ['dc1-leaf1a', 'dc1-leaf1b']
       nodes:
-        - name: DC1-L2LEAF1A
+        - name: dc1-l2leaf1A
           id: 1
           mgmt_ip: 192.168.0.17/24
           uplink_switch_interfaces:
             - Ethernet8
             - Ethernet8
     - group: DC1_L2_LEAF2
-      uplink_switches: ['DC1-LEAF2A', 'DC1-LEAF2B']
+      uplink_switches: ['dc1-leaf2a', 'dc1-leaf2b']
       nodes:
-        - name: DC1-L2LEAF2A
+        - name: dc1-l2leaf2A
           id: 2
           mgmt_ip: 192.168.0.18/24
           uplink_switch_interfaces:
