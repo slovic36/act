@@ -1,0 +1,17 @@
+---
+- name: validate states on EOS devices
+  hosts: DC1
+  connection: httpapi
+  gather_facts: false
+  collections:
+    - arista.avd
+
+  tasks:
+    - name: validate states on EOS devices
+      import_role:
+        name: arista.avd.eos_validate_state
+      vars:
+        fabric_name: "DC"
+        # root_dir: '../DC-information'
+        # root_dir: '{{ inventory_dir | dirname }}/DC-information'
+        # structured_dir: '/home/ansible/ansible-demo/avd-act-demo-evpn-gw/inventory/DC1_intended/structured_configs' 
