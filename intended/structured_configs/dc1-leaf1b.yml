@@ -222,7 +222,7 @@ vlans:
   trunk_groups:
   - MLAG
 - id: 11
-  name: VRF10_VLAN11
+  name: VRF10_VLAN11_a
   tenant: TENANT1
 - id: 12
   name: VRF10_VLAN12
@@ -263,7 +263,7 @@ vlan_interfaces:
   mtu: 1500
 - name: Vlan11
   tenant: TENANT1
-  description: VRF10_VLAN11
+  description: VRF10_VLAN11_a
   shutdown: false
   ip_address_virtual: 10.10.11.1/24
   vrf: VRF10

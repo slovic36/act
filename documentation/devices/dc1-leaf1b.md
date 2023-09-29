@@ -248,7 +248,7 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 11 | VRF10_VLAN11 | - |
+| 11 | VRF10_VLAN11_a | - |
 | 12 | VRF10_VLAN12 | - |
 | 21 | VRF11_VLAN21 | - |
 | 22 | VRF11_VLAN22 | - |
@@ -264,7 +264,7 @@ vlan internal order ascending range 1006 1199
 ```eos
 !
 vlan 11
-   name VRF10_VLAN11
+   name VRF10_VLAN11_a
 !
 vlan 12
    name VRF10_VLAN12
@@ -460,7 +460,7 @@ interface Loopback11
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan11 | VRF10_VLAN11 | VRF10 | - | False |
+| Vlan11 | VRF10_VLAN11_a | VRF10 | - | False |
 | Vlan12 | VRF10_VLAN12 | VRF10 | - | False |
 | Vlan21 | VRF11_VLAN21 | VRF11 | - | False |
 | Vlan22 | VRF11_VLAN22 | VRF11 | - | False |
@@ -487,7 +487,7 @@ interface Loopback11
 ```eos
 !
 interface Vlan11
-   description VRF10_VLAN11
+   description VRF10_VLAN11_a
    no shutdown
    vrf VRF10
    ip address virtual 10.10.11.1/24
