@@ -11,7 +11,6 @@
       import_role:
         name: arista.avd.eos_validate_state
       vars:
-        fabric_name: "DC"
-        root_dir: '../DC-information'
-        root_dir: 'DC-information'
+        fabric_name: "FABRIC"
+        root_dir: 'FABRIC-Information'
         structured_dir: 'intended/structured_configs' 
