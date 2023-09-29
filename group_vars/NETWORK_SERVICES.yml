@@ -21,7 +21,7 @@ tenants:
           # SVI definitions.
           - id: 11
             # SVI Description
-            name: VRF10_VLAN11_argh
+            name: VRF10_VLAN11
             enabled: true
             # IP anycast gateway to be used in the SVI in every leaf.
             ip_address_virtual: 10.10.11.1/24
