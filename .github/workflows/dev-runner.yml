@@ -11,6 +11,7 @@ on:
 jobs:
   avd-dev-deployment:
     runs-on: [self-hosted, dev]
+    # test
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
