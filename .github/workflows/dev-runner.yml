@@ -18,6 +18,12 @@ jobs:
       - name: Build Configurations
         run: ansible-playbook -i inventory.yml build.yml
 
+      - name: Deploy Configuration to CVP
+        run: ansible-playbook -i inventory.yml deploy-cvp.yml
+
+    #  - name: Validate connectivity
+    #    run: ansible-playbook -i inventory.yml 
+#
 #      - run: sleep 10
 #      
 #      - name: Run AVD EOS Validate State Playbook against ACT
