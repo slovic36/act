@@ -12,6 +12,6 @@
         name: arista.avd.eos_validate_state
       vars:
         fabric_name: "DC"
-        # root_dir: '../DC-information'
-        # root_dir: '{{ inventory_dir | dirname }}/DC-information'
-        # structured_dir: '/home/ansible/ansible-demo/avd-act-demo-evpn-gw/inventory/DC1_intended/structured_configs' 
+        root_dir: '../DC-information'
+        root_dir: '{{ inventory_dir | dirname }}/DC-information'
+        structured_dir: '/home/ansible/ansible-demo/avd-act-demo-evpn-gw/inventory/DC1_intended/structured_configs' 
