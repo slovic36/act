@@ -19,8 +19,8 @@ ansible_httpapi_validate_certs: false
 fabric_name: FABRIC
 
 # Define underlay and overlay routing protocol to be used
-underlay_routing_protocol: ebgp
-overlay_routing_protocol: ebgp
+underlay_routing_protocol: ospf
+overlay_routing_protocol: ibgp
 
 # Local users
 local_users:
@@ -58,7 +58,7 @@ p2p_uplinks_mtu: 1500
 default_interfaces:
   - types: [ spine ]
     platforms: [ default ]
-    uplink_interfaces: [ Ethernet1-2 ]
+#    uplink_interfaces: [ Ethernet1-2 ]
     downlink_interfaces: [ Ethernet1-8 ]
   - types: [ l3leaf ]
     platforms: [ default ]
