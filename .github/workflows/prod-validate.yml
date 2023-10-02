@@ -1,0 +1,32 @@
+name: 'Prod Manual Validation'
+
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Validate'
+        # Default value if no value is explicitly provided
+        default: 'Validate'
+        # Input has to be provided for the workflow to run
+        required: false
+        # The data type of the input
+        type: string
+
+jobs:
+  validate:
+    runs-on: [self-hosted, prod]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+
+      - name: Run AVD EOS Validate State Playbook against ACT
+        run: ansible-playbook -i inventory/inventory.yml playbooks/fabric-validation.yml --skip-tags "ntp,reload_cause,mlag,optional"
+
+      - name: Upload verification reports to github
+        uses: actions/upload-artifact@master
+        with:
+            name: ValidationReport
+            path: DC-information/reports/
+            
